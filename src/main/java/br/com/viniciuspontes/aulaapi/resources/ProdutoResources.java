@@ -14,48 +14,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.viniciuspontes.aulaapi.domain.Categoria;
-import br.com.viniciuspontes.aulaapi.services.CategoriaService;
+import br.com.viniciuspontes.aulaapi.domain.Produto;
+import br.com.viniciuspontes.aulaapi.services.ProdutoService;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaResources {
-	
+@RequestMapping("/produto")
+public class ProdutoResources {
+
 	@Autowired
-	private CategoriaService categoriaService;
-	
+	private ProdutoService produtoService;
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
-		Categoria obj = categoriaService.find(id);
-		
+	public ResponseEntity<Produto> find(@PathVariable Integer id) {
+		Produto obj = produtoService.find(id);
 		
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Void> insert( @RequestBody Categoria obj) {
+	public ResponseEntity<Void> insert( @RequestBody Produto obj) {
 		
-		obj = categoriaService.insert(obj);
+		obj = produtoService.insert(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
-			
-	}
-     
-	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
-	
-		obj.setId(id);
-		obj = categoriaService.update(obj);
-		return ResponseEntity.noContent().build();
-	
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void>delete(@PathVariable Integer id) {
-		categoriaService.delete(id);
-		return ResponseEntity.noContent().build();
 		
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Void> update(@RequestBody Produto obj, @PathVariable Integer id) {
+
+		obj.setId(id);
+		obj = produtoService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		produtoService.delete(id);
+		return ResponseEntity.noContent().build();
+
 	}
 }
