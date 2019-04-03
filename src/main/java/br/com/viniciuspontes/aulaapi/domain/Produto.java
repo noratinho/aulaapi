@@ -24,7 +24,6 @@ public class Produto implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
-	
 	private Categoria categoria;
 
 	public Produto() {
@@ -65,6 +64,18 @@ public class Produto implements Serializable {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
+	
+	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 
 	@Override
 	public int hashCode() {
