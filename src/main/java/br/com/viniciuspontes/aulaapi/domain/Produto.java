@@ -1,5 +1,6 @@
 package br.com.viniciuspontes.aulaapi.domain;
 
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -11,13 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Produto implements Serializable {
+public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	private Integer id;
 	private String nome;
 	private BigDecimal preco;
@@ -25,7 +26,7 @@ public class Produto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
-
+	
 	public Produto() {
 		
 	}
@@ -38,7 +39,6 @@ public class Produto implements Serializable {
 		this.preco = preco;
 		this.categoria = categoria;
 	}
-
 
 
 	public Integer getId() {
@@ -57,15 +57,17 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
+
+
 	public BigDecimal getPreco() {
 		return preco;
 	}
 
+
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-	
-	
+
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -82,6 +84,8 @@ public class Produto implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
 		return result;
 	}
 
@@ -99,6 +103,18 @@ public class Produto implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (preco == null) {
+			if (other.preco != null)
+				return false;
+		} else if (!preco.equals(other.preco))
+			return false;
 		return true;
 	}
+
+	
 }

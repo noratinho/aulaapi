@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.viniciuspontes.aulaapi.domain.Produto;
@@ -15,10 +17,17 @@ public class ProdutoService {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	public List<Produto> listarTodas(){
-		return produtoRepository.findAll();
+	
+	public Page<Produto> pesquisar(String nome, Pageable pageable){
+
+		return produtoRepository.findByNomeContaining(nome, pageable);
 	}
 	
+	public List<Produto> listarTodas() {
+		return 	produtoRepository.findAll();
+			
+		}
+		                                     
 	
 	public Produto find(Integer id) {
 		Optional<Produto> obj = produtoRepository.findById(id);
@@ -26,24 +35,23 @@ public class ProdutoService {
 				"Objeto não encontrado ! Id:" + id +
 				"Tipo: " + Produto.class.getName()
 				));
+				
 	}
-	
+     
 	public Produto insert(Produto obj) {
 		obj.setId(null);
 		return produtoRepository.save(obj);
 		
 	}
-	
-	public Produto update(Produto obj) {
-		
-		find(obj.getId());
-		return produtoRepository.save(obj);
-		
-	}
-	
-	public void delete(Integer id) {
-		find(id);
-		produtoRepository.deleteById(id);
-	}
 
+    public Produto update(Produto obj) {
+    	find(obj.getId());
+    	return produtoRepository.save(obj);
+    	
+    }
+	
+    public void delete(Integer id) {
+    	find(id);
+    	produtoRepository.deleteById(id);
+    }
 }

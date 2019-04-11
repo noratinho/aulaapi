@@ -1,3 +1,4 @@
+
 package br.com.viniciuspontes.aulaapi.resources;
 
 import java.net.URI;
@@ -28,12 +29,13 @@ public class CategoriaResources {
 	private CategoriaService categoriaService;
 	
 	@GetMapping()
-	public Page<Categoria> pesquisar(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable) {
+	public Page<Categoria> pesquisar(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable){
 		return categoriaService.pesquisar(nome, pageable);
 	}
 	
 	/*public List<Categoria> listar() {
 		return categoriaService.listarTodas();
+		
 	}*/
 	
 	@GetMapping("/{id}")
@@ -43,7 +45,6 @@ public class CategoriaResources {
 		
 		return ResponseEntity.ok().body(obj);
 	}
-	
 	@PostMapping
 	public ResponseEntity<Void> insert( @RequestBody Categoria obj) {
 		
@@ -65,9 +66,12 @@ public class CategoriaResources {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void>delete(@PathVariable Integer id) {
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		
 		categoriaService.delete(id);
 		return ResponseEntity.noContent().build();
 		
+		
 	}
+	
 }

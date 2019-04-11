@@ -17,12 +17,12 @@ public class Categoria implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
 	
+	private Integer id;
 	private String nome;
 	
 	@OneToMany(mappedBy = "categoria")
-	private List<Produto> produtos = new ArrayList<>();
+   private List<Produto> produtos = new ArrayList<>();
 	
    public Categoria() {
 	   

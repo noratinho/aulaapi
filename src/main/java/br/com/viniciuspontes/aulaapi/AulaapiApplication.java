@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AulaapiApplication{
 
 	//@Autowired
-	//private ProdutoRepository produtoRepository;
+	//private CategoriaRepository categoriaRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AulaapiApplication.class, args);
@@ -15,10 +15,10 @@ public class AulaapiApplication{
 
 	/* @Override
 	public void run(String... args) throws Exception {
-		Produto cat1 = new Produto(null, "Mouse");
-		Produto cat2 = new Produto(null, "Teclado");
+		Categoria cat1 = new Categoria(null, "Informática");
+		Categoria cat2 = new Categoria(null, "Tobias");
 		
-		produtoRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		
 }*/
 

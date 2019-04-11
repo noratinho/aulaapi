@@ -18,13 +18,16 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	public Page<Categoria> pesquisar(String nome, Pageable pageable) {
-		return categoriaRepository.findByNomeContaining( nome, pageable);
+	public Page<Categoria> pesquisar(String nome, Pageable pageable){
+		return categoriaRepository.findByNomeContaining(nome, pageable);
+		
 	}
 	
 	public List<Categoria> listarTodas() {
-		return categoriaRepository.findAll();
+	return 	categoriaRepository.findAll();
+		
 	}
+	                                     
  
 	public Categoria find(Integer id) {
 	       Optional<Categoria> obj = categoriaRepository.findById(id);
@@ -50,7 +53,7 @@ public class CategoriaService {
 	}
 	
 	public void delete(Integer id) {
-		find(id);
+		find (id);
 		categoriaRepository.deleteById(id);
 	}
 }

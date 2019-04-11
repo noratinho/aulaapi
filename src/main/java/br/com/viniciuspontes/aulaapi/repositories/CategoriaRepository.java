@@ -9,5 +9,8 @@ import br.com.viniciuspontes.aulaapi.domain.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+
 	public Page<Categoria> findByNomeContaining(String nome, Pageable pageable);
+	
+
 }
